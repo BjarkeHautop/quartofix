@@ -31,6 +31,15 @@ quartofix fixes these. Two approaches are implemented:
       cost of rendering this would be essentially 0, so potentially a
       decent speedup.
 
+## Installation
+
+Install from GitHub:
+
+``` r
+
+pak::pak("https://github.com/bjarkehautop/quartofix")
+```
+
 ## Usage
 
 Simply just call it after you build your site with pkgdown:
