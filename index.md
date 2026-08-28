@@ -1,11 +1,12 @@
 # quartofix
 
 pkgdown renders Quarto (`.qmd`) files with `theme: "none"` and
-`minimal: TRUE` so it can supply its own CSS instead of Quarto’s. Thus,
-currently the following is broken when using `.qmd` files:
+`minimal: TRUE` so it can supply its own CSS instead of Quarto’s
+([documented here](https://pkgdown.r-lib.org/articles/quarto.html)).
+Thus, currently the following is broken (silently!) when using `.qmd`
+files:
 
-- [Callouts blocks](https://quarto.org/docs/authoring/callouts.html)
-  degrade to a plain, untyped blockquote.
+- Callouts blocks gets converted to a plain, untyped blockquote.
 - Tabsets get actively mangled.
 - Code annotations keep their HTML/classes but lose the JS that makes
   them interactive.

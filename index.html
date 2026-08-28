@@ -58,10 +58,9 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>pkgdown renders Quarto (<code>.qmd</code>) files with <code>theme: "none"</code> and <code>minimal: TRUE</code> so it can supply its own CSS instead of Quarto’s. Thus, currently the following is broken when using <code>.qmd</code> files:</p>
+<p>pkgdown renders Quarto (<code>.qmd</code>) files with <code>theme: "none"</code> and <code>minimal: TRUE</code> so it can supply its own CSS instead of Quarto’s (<a href="https://pkgdown.r-lib.org/articles/quarto.html" class="external-link">documented here</a>). Thus, currently the following is broken (silently!) when using <code>.qmd</code> files:</p>
 <ul>
-<li>
-<a href="https://quarto.org/docs/authoring/callouts.html" class="external-link">Callouts blocks</a> degrade to a plain, untyped blockquote.</li>
+<li>Callouts blocks gets converted to a plain, untyped blockquote.</li>
 <li>Tabsets get actively mangled.</li>
 <li>Code annotations keep their HTML/classes but lose the JS that makes them interactive.</li>
 </ul>
