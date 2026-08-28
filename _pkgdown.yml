@@ -1,0 +1,27 @@
+url: https://bjarkehautop.github.io/quartofix/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Build site
+  desc: Patch a pkgdown site's HTML output.
+  contents:
+  - quartofix
+  - quartofix2
+
+- title: Individual fixers
+  desc: Helpers that fix a single kind of Quarto markup, used internally by
+    quartofix() and quartofix2() but also usable on their own.
+  contents:
+  - fix_quarto_annotations
+  - fix_quarto_callouts
+  - fix_quarto_tabsets
+
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - demo-none
+  - demo-quartofix
+  - demo-quartofix2

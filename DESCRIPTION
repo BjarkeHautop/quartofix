@@ -1,0 +1,25 @@
+Package: quartofix
+Title: Restore Quarto Callout Blocks, Tabsets, and Code Annotation Styling in pkgdown Sites
+Version: 0.0.0.9000
+Authors@R:
+    person("Bjarke", "Hautop", , "bjarke.hautop@gmail.com", role = c("aut", "cre"))
+Description: Fix a pkgdown rendered site to support quarto callout blocks, tabsets, and code
+    annotation styling from quarto vignettes. pkgdown silently destroys the rendering of these.
+License: MIT + file LICENSE
+URL: https://github.com/bjarkehautop/quartofix, https://bjarkehautop.github.io/quartofix/
+BugReports: https://github.com/bjarkehautop/quartofix/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Imports:
+    xml2,
+    fs,
+    cli
+Suggests:
+    knitr,
+    pkgdown,
+    quarto,
+    testthat (>= 3.0.0),
+    withr
+VignetteBuilder: quarto
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

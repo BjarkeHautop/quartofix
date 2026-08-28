@@ -1,0 +1,96 @@
+---
+title: "Demo: patched with quartofix()"
+vignette: >
+  %\VignetteIndexEntry{Demo: patched with quartofix()}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+This article shows every element `quartofix::quartofix()` patches up
+after `pkgdown::build_site()`. Compare with the
+[raw pkgdown output](quartofix-none.html) or the same article
+[patched with `quartofix2()`](quartofix2.html) instead.
+
+## Callouts
+
+::: {.callout-note}
+Callouts like this one keep their default title ("Note") and are recovered
+exactly - type, icon, and color included.
+:::
+
+::: {.callout-tip}
+## This one has a custom title
+pkgdown's render loses the callout *type* along with a custom title like
+this one - `quartofix()` recovers it anyway by reading the `.qmd` source
+that produced this page and matching callouts positionally.
+:::
+
+::: {.callout-warning}
+`quartofix()` only rewrites the *first* paragraph's default title. A
+callout title spanning multiple lines is not currently supported.
+:::
+
+::: {.callout-caution}
+Running `quartofix()` more than once is safe - already-patched files are
+detected and skipped.
+:::
+
+::: {.callout-important}
+`quartofix()` must run after `pkgdown::build_site()`, not before - it
+patches the *rendered* HTML, not the `.qmd` source.
+:::
+
+## Tabsets
+
+That doesn't run the code:
+
+::: {.panel-tabset}
+## R
+
+```r
+pkgdown::build_site()
+quartofix::quartofix()
+```
+
+## Shell
+
+```sh
+Rscript -e 'pkgdown::build_site(); quartofix::quartofix()'
+```
+:::
+
+That runs the (R) code:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+1+1
+```
+
+## Shell
+
+```sh
+Rscript -e 'pkgdown::build_site(); quartofix::quartofix()'
+```
+:::
+
+## Code annotations
+
+```{r}
+#| eval: false
+pkgdown::build_site()     # <1>
+quartofix::quartofix()    # <2>
+```
+1. Builds the site as usual - Quarto articles render with callouts,
+   tabsets, and annotations all degraded.
+2. Walks `docs/`, restores callout markup, and links in the small
+   `quartofix.css`/`quartofix.js` bundle wherever it's needed.
+
+## A normal blockquote
+
+Here is an ordinary blockquote, to show it's still intact:
+
+> Premature optimization is the root of all evil.
+>
+> --- Donald Knuth
