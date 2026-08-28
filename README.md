@@ -24,11 +24,19 @@ it together with the generated `.html` from pkgdown.
   - TODO:
     - Could move callouts and tabsets (that don't run the code (since it might need previous code)) into a seperate temp `.qmd` file. The cost of rendering this would be essentially 0, so potentially a decent speedup.
 
+## Installation
+
+Install from GitHub:
+
+``` r
+pak::pak("https://github.com/bjarkehautop/quartofix")
+```
+
 ## Usage
 
 Simply just call it after you build your site with pkgdown:
 
-```r
+``` r
 pkgdown::build_site()
 quartofix::quartofix() # or quartofix2()
 ```
