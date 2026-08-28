@@ -37,3 +37,13 @@ See the same demo article as
 [raw pkgdown output](https://bjarkehautop.github.io/quartofix/articles/demo-none.html),
 [patched with `quartofix()`](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix.html),
 and [patched with `quartofix2()`](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix2.html).
+
+## Background
+
+I first started the other way around to get my Quarto features fully supported:
+Patch an [altdoc](https://altdoc.etiennebacher.com/#/) site (which supports Quarto websites
+natively) to look like a pkgdown site, see [altdown](https://bjarkehautop.github.io/altdown/). Using altdown on an altdoc site should make it look very similar to a pkgdown site, but it was honestly harder and required more code than I first thought.
+
+After learning from that, I took what I learned and tried to make it work the other way, hence I made this package.
+
+I'll probably make a PR upstream on pkgdown soon, but for now you can use this package. (Maybe only for the callout blocks and tabsets, since the fix for code annotations is more brittle and involved.)
