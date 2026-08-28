@@ -1,0 +1,99 @@
+# quartofix
+
+pkgdown renders Quarto (`.qmd`) files with `theme: "none"` and
+`minimal: TRUE` so it can supply its own CSS instead of Quarto’s. Thus,
+currently the following is broken when using `.qmd` files:
+
+- [Callouts blocks](https://quarto.org/docs/authoring/callouts.html)
+  degrade to a plain, untyped blockquote.
+- Tabsets get actively mangled.
+- Code annotations keep their HTML/classes but lose the JS that makes
+  them interactive.
+
+quartofix fixes these. Two approaches are implemented:
+
+- [`quartofix()`](https://bjarkehautop.github.io/quartofix/reference/quartofix.md):
+  Rewrites the broken things into Quarto’s native callout markup, and
+  links in a small vendored CSS/JS bundle so tabsets and code
+  annotations work without pulling in Quarto’s full asset bundle.
+
+- [`quartofix2()`](https://bjarkehautop.github.io/quartofix/reference/quartofix2.md):
+  Runs `quarto render` on the `.qmd` files with any callout blocks or
+  tabsets. Code annotations are handled the same way as in
+  [`quartofix()`](https://bjarkehautop.github.io/quartofix/reference/quartofix.md),
+  since their markup already survives pkgdown’s render intact, only the
+  vendored JS/CSS bundle needs to be linked in. Then patches it together
+  with the generated `.html` from pkgdown.
+
+  - TODO:
+    - Could move callouts and tabsets (that don’t run the code (since it
+      might need previous code)) into a seperate temp `.qmd` file. The
+      cost of rendering this would be essentially 0, so potentially a
+      decent speedup.
+
+## Usage
+
+Simply just call it after you build your site with pkgdown:
+
+``` r
+
+pkgdown::build_site()
+quartofix::quartofix() # or quartofix2()
+```
+
+See the same demo article as [raw pkgdown
+output](https://bjarkehautop.github.io/quartofix/articles/demo-none.html),
+[patched with
+`quartofix()`](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix.html),
+and [patched with
+`quartofix2()`](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix2.html).
+
+## Background
+
+I first started the other way around to get my Quarto features fully
+supported: Patch an [altdoc](https://altdoc.etiennebacher.com/#/) site
+(which supports Quarto websites natively) to look like a pkgdown site,
+see [altdown](https://bjarkehautop.github.io/altdown/). Using altdown on
+an altdoc site should make it look very similar to a pkgdown site, but
+it was honestly harder and required more code than I first thought.
+
+After learning from that, I took what I learned and tried to make it
+work the other way, hence I made this package.
+
+I’ll probably make a PR upstream on pkgdown soon, but for now you can
+use this package. (Maybe only for the callout blocks and tabsets, since
+the fix for code annotations is more brittle and involved.)
+
+# Package index
+
+## Build site
+
+Patch a pkgdown site’s HTML output.
+
+- [`quartofix()`](https://bjarkehautop.github.io/quartofix/reference/quartofix.md)
+  : Patch a pkgdown site's Quarto vignettes by restoring
+- [`quartofix2()`](https://bjarkehautop.github.io/quartofix/reference/quartofix2.md)
+  : Patch a pkgdown site by splicing genuine Quarto HTML
+
+## Individual fixers
+
+Helpers that fix a single kind of Quarto markup, used internally by
+quartofix() and quartofix2() but also usable on their own.
+
+- [`fix_quarto_annotations()`](https://bjarkehautop.github.io/quartofix/reference/fix_quarto_annotations.md)
+  : Detect Quarto code annotations in a pkgdown-rendered HTML file
+- [`fix_quarto_callouts()`](https://bjarkehautop.github.io/quartofix/reference/fix_quarto_callouts.md)
+  : Restore Quarto callout markup in a pkgdown-rendered HTML file
+- [`fix_quarto_tabsets()`](https://bjarkehautop.github.io/quartofix/reference/fix_quarto_tabsets.md)
+  : Undo pkgdown's corruption of Quarto tabsets
+
+# Articles
+
+### Articles
+
+- [Demo: raw pkgdown
+  output](https://bjarkehautop.github.io/quartofix/articles/demo-none.md):
+- [Demo: patched with
+  quartofix()](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix.md):
+- [Demo: patched with
+  quartofix2()](https://bjarkehautop.github.io/quartofix/articles/demo-quartofix2.md):

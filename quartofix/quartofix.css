@@ -1,0 +1,319 @@
+/* quartofix: styling for Quarto callouts, tabsets, and code annotations,
+   restoring what pkgdown's `theme: "none"` / `minimal: TRUE` Quarto render
+   strips out. Colors and icons are lifted from Quarto's own bootstrap
+   theme so a fixed-up article matches a normal Quarto render. */
+
+/* ---- callouts ---- */
+
+.callout {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0.375rem;
+  overflow-wrap: break-word;
+  border-left: 5px solid;
+  border-right: 1px solid rgb(221.7, 222.3, 222.9);
+  border-top: 1px solid rgb(221.7, 222.3, 222.9);
+  border-bottom: 1px solid rgb(221.7, 222.3, 222.9);
+}
+.callout .callout-title-container {
+  overflow-wrap: anywhere;
+}
+.callout-header {
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 85%;
+  font-size: 0.9rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.2em;
+  margin-bottom: -0.2em;
+  border-top-right-radius: calc(0.375rem - 1px);
+}
+.callout-body {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.callout-body > :first-child {
+  padding-top: 0.5rem;
+  margin-top: 0;
+}
+.callout-body > :last-child {
+  margin-bottom: 0.5em;
+}
+.callout-icon-container {
+  padding-top: 0.2em;
+  padding-right: 0.55em;
+}
+.callout-icon::before {
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+}
+
+.callout-note { border-left-color: #0d6efd; }
+.callout-note > .callout-header { background-color: rgb(230.8, 240.5, 254.8); }
+.callout-note .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(11.7, 99, 227.7)" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>');
+}
+
+.callout-tip { border-left-color: #198754; }
+.callout-tip > .callout-header { background-color: rgb(232, 243, 237.9); }
+.callout-tip .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(22.5, 121.5, 75.6)" class="bi bi-lightbulb" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/></svg>');
+}
+
+.callout-warning { border-left-color: #ffc107; }
+.callout-warning > .callout-header { background-color: rgb(255, 248.8, 230.2); }
+.callout-warning .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(229.5, 173.7, 6.3)" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/><path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/></svg>');
+}
+
+.callout-caution { border-left-color: #fd7e14; }
+.callout-caution > .callout-header { background-color: rgb(254.8, 242.1, 231.5); }
+.callout-caution .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(227.7, 113.4, 18)" class="bi bi-cone-striped" viewBox="0 0 16 16"><path d="M9.97 4.88l.953 3.811C10.158 8.878 9.14 9 8 9c-1.14 0-2.159-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.274 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/></svg>');
+}
+
+.callout-important { border-left-color: #dc3545; }
+.callout-important > .callout-header { background-color: rgb(251.5, 234.8, 236.4); }
+.callout-important .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(198, 47.7, 62.1)" class="bi bi-exclamation-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/></svg>');
+}
+
+/* ---- tabsets ---- */
+/* pkgdown's Quarto render keeps `.panel-tabset` markup intact - it just
+   lacks the JS (Quarto normally uses the "tabby" library) and CSS that make
+   it look and behave like tabs instead of a flat list. Values below are
+   lifted from Quarto's own compiled bootstrap CSS so the tab bar and its
+   content box read as one connected unit, the way a real Quarto render
+   does. */
+
+.panel-tabset-tabby {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #dee2e6;
+  gap: 0.25rem;
+}
+.panel-tabset-tabby li {
+  margin-bottom: -1px;
+}
+.panel-tabset-tabby a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  text-decoration: none;
+  color: #495057;
+}
+.panel-tabset-tabby a:hover {
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+.panel-tabset-tabby a.quartofix-active {
+  color: #000;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  font-weight: 600;
+}
+.panel-tabset .tab-content {
+  /* pkgdown's own bootstrap ships a generic `.tab-content{display:flex}`
+     rule for its own R Markdown-style tabsets, where panes carry a
+     `.tab-pane` class that gets `width:100%`. Our panes don't have that
+     class, so as flex items they'd shrink to fit their content instead of
+     filling the box - the code block would render far narrower than the
+     tab bar above it. */
+  display: block;
+  margin-top: 0;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+/* `:not(.tab-pane)` excludes genuine Quarto/Bootstrap tab panes (as
+   quartofix2() splices in) from this rule - those already carry their own
+   Bootstrap `.tab-pane`/`.active` show-hide behavior via pkgdown's bundled
+   Bootstrap JS/CSS, and this rule's higher specificity would otherwise
+   override it and hide every pane permanently, since quartofix.js below
+   only knows how to drive the `.panel-tabset-tabby` nav it reconstructs. */
+.panel-tabset .tab-content > div:not(.tab-pane) {
+  display: none;
+}
+.panel-tabset .tab-content > div.quartofix-active {
+  display: block;
+}
+/* pkgdown ships its own CSS for R Markdown-style `{.tabset}` headings that
+   also matches the generic `.tab-content > .tab-pane` shape Quarto's
+   native tabset markup uses - but it only toggles `visibility`, not
+   `display` (`.tab-content>.tab-pane{display:block;visibility:hidden;
+   margin-right:-100%;width:100%}`), relying on a flex + negative-margin
+   trick to hide inactive panes *horizontally*. That trick only works
+   with the `display:flex` pkgdown also sets on `.tab-content`, which we
+   override to `block` above - so inactive panes end up `display:block`
+   and just stack their (invisible) content's height below the active
+   one. Force real display:none/block here, scoped to `.panel-tabset` so
+   pkgdown's own tabsets elsewhere are untouched. */
+.panel-tabset .tab-content > .tab-pane {
+  display: none;
+  visibility: visible;
+  margin-right: 0;
+  width: auto;
+}
+.panel-tabset .tab-content > .tab-pane.active {
+  display: block;
+}
+.panel-tabset .tab-content > div.quartofix-active > :first-child {
+  margin-top: 0;
+}
+.panel-tabset .tab-content > div.quartofix-active > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---- code annotations ---- */
+/* Structure and classes survive pkgdown's Quarto render; this recreates
+   Quarto's numbered-gutter look (circular badges floated into a shaded
+   strip on the right of the code block) and the hover/active highlighting
+   Quarto normally gets from tippy.js, using the same markup and class
+   names Quarto itself emits. */
+
+/* pkgdown's minimal Quarto render drops Pandoc's own boilerplate CSS for
+   `.sourceCode` blocks, so a plain `<pre>`'s browser-default
+   `overflow: auto` is left standing. It clips the last characters of code
+   lines behind a scrollbar the moment the annotation gutter's floated
+   badges push the block's scroll height a pixel or two past its client
+   height. These rules restore Pandoc's own base styling, which avoids that
+   entirely. */
+.sourceCode {
+  overflow: visible;
+}
+div.sourceCode {
+  margin: 1em 0;
+  overflow: auto;
+}
+/* Annotated cells specifically must stay fully visible rather than auto:
+   the gutter's floated badges are just tall enough, after border/padding
+   rounding, to push scroll height a pixel or two past client height in
+   some browsers - and per the CSS overflow spec, pairing `overflow-x: auto`
+   with `overflow-y: visible` computes the "visible" axis to `auto` too, so
+   only setting *both* axes to `visible` actually avoids the scrollbar. */
+div.sourceCode.cell-code {
+  overflow: visible;
+}
+pre.sourceCode {
+  margin: 0;
+}
+pre > code.sourceCode {
+  position: relative;
+  white-space: pre;
+}
+/* Not Pandoc's own `pre > code.sourceCode > span { display: inline-block }`:
+   paired with the annotation anchor's `float: right` on the same line, it
+   triggers a shrink-to-fit layout bug in Chromium that silently clips the
+   last characters of the line (verified by isolating the two rules). Plain
+   inline text does not have this problem. */
+.code-annotation-code {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+}
+/* Quarto emits `.code-annotation-gutter-bg`/`.code-annotation-gutter` as
+   `<div>`s *inside* the inline `<code>` element. That's invalid nesting,
+   and Chromium's fixup for a block box inside inline content ends up
+   clipping the last characters of whichever code line precedes them. Since
+   these two divs are purely decorative (an opaque backing layer plus a
+   tinted strip), drop them from layout and recreate the same strip as a
+   `::after` on the `<pre>` itself instead, which never touches the inline
+   `<code>` content. */
+.code-annotation-gutter-bg,
+.code-annotation-gutter {
+  display: none;
+}
+.code-annotation-code::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: calc(20px + 0.5em);
+  background-color: rgba(233, 236, 239, 0.65);
+  pointer-events: none;
+}
+/* pkgdown's own hover-to-reveal copy button (`.btn-copy-ex`, added by its
+   own JS to every `div.sourceCode`) is a sibling of `<pre>` with no
+   z-index, so it paints in plain DOM order - meaning the `<pre>`'s own
+   `::after` above, coming later in the DOM, silently painted over and hid
+   it. Lifting the button above both the gutter overlay and the annotation
+   anchors (z-index: 100) restores it. */
+.cell-code > .btn-copy-ex {
+  z-index: 300;
+}
+.code-annotation-anchor {
+  position: relative;
+  z-index: 100;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  width: 18px;
+  margin-top: 2px;
+  padding: 2px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 9px;
+  border: solid #6a737d 1px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #6a737d;
+  text-decoration: none;
+  cursor: default;
+  user-select: none;
+}
+.code-annotation-anchor.quartofix-active {
+  border-color: #aaaaaa;
+  background-color: #aaaaaa;
+  color: #e9ecef;
+  font-weight: bolder;
+}
+.code-annotation-target.quartofix-active {
+  background-color: rgba(233, 236, 239, 0.65);
+}
+dl.code-annotation-container-grid {
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+dl.code-annotation-container-grid dt {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1em;
+  margin-top: 0.25rem;
+  height: 22px;
+  width: 22px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  border: solid #6a737d 1px;
+  border-radius: 50%;
+  color: #6a737d;
+  text-decoration: none;
+  cursor: pointer;
+}
+dl.code-annotation-container-grid dd {
+  grid-column: 2;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 0.5em;
+}
+dl.code-annotation-container-grid dt.quartofix-active {
+  border-color: #aaaaaa;
+  background-color: #aaaaaa;
+  color: #fff;
+}
